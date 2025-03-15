@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            display: flex;
+            padding: 40px 0;
+        }
+
+        /* Blog Posts Section */
+        .blog-posts {
+            flex: 2;
+            margin-right: 30px;
+        }
+
+        .post {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .post:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .post-content {
+            padding: 20px;
+        }
+
+        .post-title {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .post-meta {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .post-summary {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 3px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .read-more:hover {
+            background-color: #2980b9;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            flex: 1;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            height: fit-content;
+        }
+
+        .sidebar h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-posts li {
+            margin-bottom: 10px;
+            list-style: none;
+        }
+
+        .sidebar-posts a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .sidebar-posts a:hover {
+            text-decoration: underline;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            background-color: #ecf0f1;
+            color: #7f8c8d;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            transition: background-color 0.3s;
+        }
+
+        .tag:hover {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+
+        .newsletter input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ecf0f1;
+            border-radius: 3px;
+        }
+
+        .newsletter button {
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 40px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            margin-right: 30px;
+        }
+
+        .footer-section:last-child {
+            margin-right: 0;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #3498db;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #34495e;
+            font-size: 0.9rem;
+            color: #ecf0f1;
+        }
+
+        /* Toggle sidebar button */
+        .toggle-sidebar {
+            display: none;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .pagination a {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 0 5px;
+            border-radius: 3px;
+            background-color: white;
+            color: #3498db;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .pagination a:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .pagination .active {
+            background-color: #3498db;
+            color: white;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media screen and (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .blog-posts {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-section {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #2c3e50;
+                padding: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-out;
+            }
+
+            nav.active {
+                max-height: 300px;
+                border-top: 1px solid #34495e;
+            }
+
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            nav ul li {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .toggle-sidebar {
+                display: block;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .sidebar.active {
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .post-image {
+                height: 200px;
+            }
+
+            .header-content {
+                padding: 0 10px;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">DailyBlogs</h1>
+                <button class="nav-toggle">☰</button>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Categories</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Blog Posts Section -->
+            <section class="blog-posts">
+                <button class="toggle-sidebar">Toggle Sidebar</button>
+                
+                <!-- Blog Post 1 -->
+                <article class="post">
+                    <img src="images.jpeg" alt="Blog post image" class="post-image">
+                    <div class="post-content">
+                        <h2 class="post-title">The Future of Web Development in 2025</h2>
+                        <div class="post-meta">Posted on February 20, 2025 by John Doe</div>
+                        <p class="post-summary">
+                            Web development continues to evolve at a rapid pace. From AI-driven components to new ways of thinking about
+                            responsive design, let's explore the most exciting trends for developers to watch in 2025.
+                        </p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="post">
+                    <img src="sddefault.jpg" alt="Blog post image" class="post-image">
+                    <div class="post-content">
+                        <h2 class="post-title">10 CSS Tricks You Didn't Know About</h2>
+                        <div class="post-meta">Posted on February 15, 2025 by Jane Smith</div>
+                        <p class="post-summary">
+                            CSS has come a long way since its inception. In this post, we'll dive into some lesser-known CSS tricks
+                            that can make your life as a developer much easier and your websites more impressive.
+                        </p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="post">
+                    <img src="web-accessibility-1.png" alt="Blog post image" class="post-image">
+                    <div class="post-content">
+                        <h2 class="post-title">Building Accessible Websites: A Comprehensive Guide</h2>
+                        <div class="post-meta">Posted on February 10, 2025 by Mark Johnson</div>
+                        <p class="post-summary">
+                            Web accessibility is not just a nice-to-have feature—it's a necessity. Learn how to make your websites 
+                            accessible to everyone, including people with disabilities, and why it matters for your business.
+                        </p>
+                        <a href="#" class="read-more">Read More</a>
+                    </div>
+                </article>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">Next »</a>
+                </div>
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- About Section -->
+                <div class="sidebar-section">
+                    <h3>About the Blog</h3>
+                    <p>DailyBlogs is your go-to source for the latest trends, tips, and insights in web development and technology.</p>
+                </div>
+
+                <!-- Popular Posts Section -->
+                <div class="sidebar-section">
+                    <h3>Popular Posts</h3>
+                    <ul class="sidebar-posts">
+                        <li><a href="#">JavaScript Frameworks Comparison 2025</a></li>
+                        <li><a href="#">Designing for Dark Mode: Best Practices</a></li>
+                        <li><a href="#">How to Optimize Website Performance</a></li>
+                        <li><a href="#">Getting Started with WebAssembly</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories Section -->
+                <div class="sidebar-section">
+                    <h3>Categories</h3>
+                    <ul class="sidebar-posts">
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">UX/UI Design</a></li>
+                        <li><a href="#">Programming</a></li>
+                        <li><a href="#">Mobile Development</a></li>
+                    </ul>
+                </div>
+
+                <!-- Tags Section -->
+                <div class="sidebar-section">
+                    <h3>Tags</h3>
+                    <div class="tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Responsive</span>
+                        <span class="tag">UX</span>
+                        <span class="tag">Design</span>
+                        <span class="tag">API</span>
+                    </div>
+                </div>
+
+                <!-- Newsletter Section -->
+                <div class="sidebar-section newsletter">
+                    <h3>Subscribe to Newsletter</h3>
+                    <p>Stay updated with our latest articles and news.</p>
+                    <input type="email" placeholder="Your Email Address">
+                    <button type="submit">Subscribe</button>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <!-- About Section -->
+                <div class="footer-section">
+                    <h3>About DailyBlogs</h3>
+                    <p>DailyBlogs is a platform dedicated to sharing knowledge and insights about web development, programming, and technology trends.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">F</a>
+                        <a href="#" class="social-link">T</a>
+                        <a href="#" class="social-link">L</a>
+                        <a href="#" class="social-link">I</a>
+                    </div>
+                </div>
+
+                <!-- Quick Links Section -->
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Section -->
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@DailyBlogs.com</p>
+                    <p>Phone: +1 (123) 456-7890</p>
+                    <p>Address: 123 Tech Street, San Francisco, CA</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 DailyBlogs. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Toggle Navigation Menu
+        const navToggle = document.querySelector('.nav-toggle');
+        const nav = document.querySelector('nav');
+
+        navToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // Toggle Sidebar
+        const toggleSidebarBtn = document.querySelector('.toggle-sidebar');
+        const sidebar = document.querySelector('.sidebar');
+
+        toggleSidebarBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            if (sidebar.classList.contains('active')) {
+                toggleSidebarBtn.textContent = 'Hide Sidebar';
+            } else {
+                toggleSidebarBtn.textContent = 'Show Sidebar';
+            }
+        });
+
+        // Tag Click Event
+        const tags = document.querySelectorAll('.tag');
+        
+        tags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                alert(`You clicked on the ${tag.textContent} tag. This would typically filter posts.`);
+            });
+        });
+
+        // Newsletter Subscription
+        const newsletterBtn = document.querySelector('.newsletter button');
+        const newsletterInput = document.querySelector('.newsletter input');
+
+        newsletterBtn.addEventListener('click', () => {
+            const email = newsletterInput.value.trim();
+            if (email) {
+                alert(`Thank you for subscribing with ${email}! You would typically receive a confirmation email.`);
+                newsletterInput.value = '';
+            } else {
+                alert('Please enter a valid email address.');
+            }
+        });
+
+        // Post Hover Effect
+        const posts = document.querySelectorAll('.post');
+        
+        posts.forEach(post => {
+            const readMoreBtn = post.querySelector('.read-more');
+            
+            readMoreBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('This would typically open the full blog post page.');
+            });
+        });
+
+        // Pagination Click Event
+        const paginationLinks = document.querySelectorAll('.pagination a');
+        
+        paginationLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                paginationLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                alert(`You clicked on page ${link.textContent}. This would typically load a new set of blog posts.`);
+            });
+        });
+
+        // Responsive behavior - Close menu when a link is clicked
+        const navLinks = document.querySelectorAll('nav ul li a');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    nav.classList.remove('active');
+                }
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                if (!e.target.closest('nav') && !e.target.closest('.nav-toggle') && nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
