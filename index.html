@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eef2f3;
+            color: #333;
+        }
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        section {
+            padding: 40px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .home-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .home-text {
+            max-width: 50%;
+        }
+        .home-photo img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .skills-container-out{
+          display:flex;
+          justify-content: center;
+          align-items: center;
+        }
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .skill {
+            background: #1f2937;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .projects-container {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .project {
+            width: 300px;
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-top: 4px solid #1f2937;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: auto;
+        }
+        form label {
+            margin-top: 10px;
+            color: #1f2937;
+        }
+        form input, form textarea {
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        form button {
+            margin-top: 15px;
+            padding: 10px;
+            background: #1f2937;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        form button:hover {
+            background: #374151;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .home-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .home-text {
+                max-width: 100%;
+            }
+            .home-photo {
+                margin-top: 20px;
+            }
+            .skills-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .project {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home">
+        <div class="home-container">
+            <div class="home-text">
+                <h2>Welcome to My Portfolio</h2>
+                <p style="margin-top:40px">
+                  Hi, I'm Sagar Sharma, a passionate Computer Science Engineering Student with a strong interest in data analysis and web development. I love interacting with data whether it's raw or organized. My goal is to become a top-tier dala analyst and solve real-world problems using my skills. I enjoy experimenting with new technologies to continuously enhance my skills and stay ahead in the ever-evolving tech landscape.</p>
+            </div>
+            <div class="home-photo">
+                <img src="LinkedIn_profile.jpeg" alt="LinkedIn profile">
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container-out">
+          <div class="skills-container">
+              <div class="skill">Python</div>
+              <div class="skill">MySQL</div>
+              <div class="skill">PowerBI</div>
+              <div class="skill">Java</div>
+              <div class="skill">HTML</div>
+              <div class="skill">CSS</div>
+          </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-container">
+            <div class="project">
+                <h3>Tic Tac Toe Game</h3>
+                <p>A classic Tic-Tac-Toe game built using HTML, CSS, and JavaScript. This interactive web-based game allows two players to take turns marking Xs and Os on a 3×3 grid. </p>
+            </div>
+            <div class="project">
+                <h3>Memory Card Game</h3>
+                <p>A fun and interactive Memory Card Game built using HTML, CSS, and JavaScript. The game challenges players to match pairs of cards by flipping them over, testing their memory and concentration skills.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+</body>
+</html>
